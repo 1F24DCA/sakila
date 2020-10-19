@@ -14,6 +14,8 @@ public class LoginServlet extends HttpServlet {
 	
 	// 로그인 폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("debug: method-begin: LoginServlet.doGet()");
+		
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginStaff") != null) {
 			response.sendRedirect(request.getContextPath()+"/auth/IndexServlet");
@@ -22,10 +24,14 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+		
+		System.out.println("debug: method-end: LoginServlet.doGet()");
 	}
 	
 	// 로그인 액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("debug: method-begin: LoginServlet.doPost()");
+
+		System.out.println("debug: method-end: LoginServlet.doPost()");
 	}
 }

@@ -30,7 +30,8 @@ public class LoginFilter implements Filter {
 			HttpSession session = httpRequest.getSession();
 			if (session.getAttribute("loginStaff") == null) {
 				httpResponse.sendRedirect(httpRequest.getContextPath()+"/LoginServlet");
-				
+
+				System.out.println("debug: method-end: LoginFilter.doFilter(), 'Login required'");
 				return;
 			}
 		}
