@@ -14,7 +14,7 @@ public class StatsService {
 	// 오늘의 방문자 수를 조회하는 메서드
 	// Stats 객체를 반환: stats.getDay() 메서드로 방문날짜, stats.getCount()로 오늘의 방문횟수 조회 가능
 	public Stats getTodayStats() {
-		System.out.println("debug: method-begin: StatsService.getStats()");
+		System.out.println("debug: method-begin: StatsService.getTodayStats()");
 		statsDao = new StatsDao();
 		
 		// 리스너에서 Class.forName()을 이미 호출하여 JDBC를 로드했으므로 따로 적을 필요는 없음
@@ -66,7 +66,7 @@ public class StatsService {
 			}
 		}
 		
-		System.out.println("debug: method-end: StatsService.getStats()");
+		System.out.println("debug: method-end: StatsService.getTodayStats()");
 		return returnStats;
 	}
 	

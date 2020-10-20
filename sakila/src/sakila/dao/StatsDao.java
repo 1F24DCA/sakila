@@ -52,7 +52,7 @@ public class StatsDao {
 	
 	// paramStats로 받아온 날짜의 방문자 수를 1로 초기화시키는 메서드
 	public void insertStatsCountOne(Connection conn, Stats paramStats) throws Exception {
-		System.out.println("debug: method-begin: StatsDao.insertStats()");
+		System.out.println("debug: method-begin: StatsDao.insertStatsCountOne()");
 		System.out.println("debug: method-parameter: paramStats="+paramStats);
 		
 		PreparedStatement stmt = conn.prepareStatement(StatsQuery.INSERT_STATS_COUNT_ONE);
@@ -62,12 +62,12 @@ public class StatsDao {
 		int updatedRow = stmt.executeUpdate();
 		System.out.println("debug: instance-variable: updatedRow="+updatedRow);
 
-		System.out.println("debug: method-end: StatsDao.insertStats()");
+		System.out.println("debug: method-end: StatsDao.insertStatsCountOne()");
 	}
 	
 	// paramStats로 받아온 날짜의 방문자 수를 1 증가시키는 메서드
 	public void updateStatsPlusOne(Connection conn, Stats paramStats) throws Exception {
-		System.out.println("debug: method-begin: StatsDao.insertStats()");
+		System.out.println("debug: method-begin: StatsDao.updateStatsPlusOne()");
 		System.out.println("debug: method-parameter: paramStats="+paramStats);
 		
 		PreparedStatement stmt = conn.prepareStatement(StatsQuery.UPDATE_STATS_PLUS_ONE);
@@ -77,6 +77,6 @@ public class StatsDao {
 		int updatedRow = stmt.executeUpdate();
 		System.out.println("debug: instance-variable: updatedRow="+updatedRow);
 		
-		System.out.println("debug: method-end: StatsDao.insertStats()");
+		System.out.println("debug: method-end: StatsDao.updateStatsPlusOne()");
 	}
 }
