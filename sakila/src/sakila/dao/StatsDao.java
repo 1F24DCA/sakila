@@ -31,6 +31,26 @@ public class StatsDao {
 		return returnStats;
 	}
 	
+	// 전체 기간의 방문자 수를 측정하는 메서드
+	public Stats selectStatsTotal(Connection conn) throws Exception {
+		System.out.println("debug: method-begin: StatsDao.selectStatsTotal()");
+		
+		Stats returnStats = null;
+		
+		PreparedStatement stmt = conn.prepareStatement(StatsQuery.SELECT_STATS_TOTAL);
+		System.out.println("debug: instance-variable: stmt="+stmt);
+
+		ResultSet rs = stmt.executeQuery();
+		if (rs.next()) {
+			returnStats = new Stats();
+			returnStats.setCount(rs.getLong("SUM(count)"));
+		}
+		System.out.println("debug: instance-variable: returnStats="+returnStats);
+		
+		System.out.println("debug: method-end: StatsDao.selectStatsTotal()");
+		return returnStats;
+	}
+	
 	// paramStats로 받아온 날짜의 방문자 수를 1로 초기화시키는 메서드
 	public void insertStatsCountOne(Connection conn, Stats paramStats) throws Exception {
 		System.out.println("debug: method-begin: StatsDao.insertStats()");

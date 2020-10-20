@@ -35,9 +35,12 @@
 				</form>
 				
 				<div class="text-center m-2">
-					<span class="text-secondary small">
+					<div class="text-secondary small">
 						오늘 방문자 수: ${todayStats.count}
-					</span>
+					</div>
+					<div class="text-secondary small">
+						총 방문자 수: ${totalStats.count}
+					</div>
 				</div>
 			</div>
 		</div>
