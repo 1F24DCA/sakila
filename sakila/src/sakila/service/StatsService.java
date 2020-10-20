@@ -22,10 +22,11 @@ public class StatsService {
 		System.out.println("debug: instance-variable: DB_PASSWORD="+DB_PASSWORD);
 		
 		try {
+			System.out.println("debug: message: 'Connect DB...'");
 			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 			// 트랜잭션이 처리될 경우를 대비해, 자동 커밋을 하지 않고, try문의 끝에서 수동으로 commit을 넣음
 			conn.setAutoCommit(false);
-			System.out.println("debug: message: 'connected successfully: DB'");
+			System.out.println("debug: message: 'Connect successfully: DB'");
 			
 			// TODO: 채워넣기
 			StatsDao statsDao = new StatsDao();
@@ -43,6 +44,7 @@ public class StatsService {
 			Stats todayStats = statsDao.selectStatsOne(conn, paramStats);
 			System.out.println("debug: instance-variable: todayStats="+todayStats);
 			
+			System.out.println("debug: message: 'Execute SQL transection...'");
 			if (todayStats != null) {
 				// 오늘 날짜에 방문자가 이미 있다면 기존 방문자 수에 +1을 함
 				statsDao.updateStatsPlusOne(conn, todayStats);
@@ -52,19 +54,27 @@ public class StatsService {
 			}
 			
 			conn.commit();
+			System.out.println("debug: message: 'Execute successfully: Connect DB and SQL transection'");
 		} catch (Exception e) { // DB 연결 혹은 쿼리 작업 중 예외 발생 시
 			e.printStackTrace();
+			System.out.println("debug: message: 'Execute failed: Connect DB and SQL transection'");
 			
 			try {
+				System.out.println("debug: message: 'Execute rollback...'");
 				conn.rollback();
+				System.out.println("debug: message: 'Execute successfully: rollback'");
 			} catch (Exception e2) { // 롤백 실패 시
 				e2.printStackTrace();
+				System.out.println("debug: message: 'Execute failed: rollback'");
 			}
 		} finally { // 어쩌나 저쩌나 작업이 중도 실패됐든 작업이 정상 종료 되었든간에 conn.close()로 자원 수동 반환
 			try {
+				System.out.println("debug: message: 'Close conn...'");
 				conn.close();
+				System.out.println("debug: message: 'Close successfully: conn'");
 			} catch (Exception e) { // conn.close() 실패 시
 				e.printStackTrace();
+				System.out.println("debug: message: 'Close failed: conn'");
 			}
 		}
 		

@@ -17,7 +17,8 @@ public class StatsDao {
 		
 		PreparedStatement stmt = conn.prepareStatement(StatsQuery.SELECT_STATS_ONE);
 		stmt.setString(1, paramStats.getDay());
-		
+		System.out.println("debug: instance-variable: stmt="+stmt);
+
 		ResultSet rs = stmt.executeQuery();
 		if (rs.next()) {
 			returnStats = new Stats();
@@ -37,6 +38,7 @@ public class StatsDao {
 		
 		PreparedStatement stmt = conn.prepareStatement(StatsQuery.INSERT_STATS_COUNT_ONE);
 		stmt.setString(1, paramStats.getDay());
+		System.out.println("debug: instance-variable: stmt="+stmt);
 		
 		int updatedRow = stmt.executeUpdate();
 		System.out.println("debug: instance-variable: updatedRow="+updatedRow);
@@ -51,6 +53,7 @@ public class StatsDao {
 		
 		PreparedStatement stmt = conn.prepareStatement(StatsQuery.UPDATE_STATS_PLUS_ONE);
 		stmt.setString(1, paramStats.getDay());
+		System.out.println("debug: instance-variable: stmt="+stmt);
 		
 		int updatedRow = stmt.executeUpdate();
 		System.out.println("debug: instance-variable: updatedRow="+updatedRow);

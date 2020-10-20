@@ -15,12 +15,12 @@ public class DBListener implements ServletContextListener {
 
 		
 		try {
-			System.out.println("debug: message: 'loading org.mariadb.jdbc.Driver...'");
+			System.out.println("debug: message: 'Load org.mariadb.jdbc.Driver...'");
 			Class.forName("org.mariadb.jdbc.Driver");
-			
-			System.out.println("debug: message: 'load successfully: org.mariadb.jdbc.Driver'");
+			System.out.println("debug: message: 'Load successfully: org.mariadb.jdbc.Driver'");
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("debug: message: 'Load failed: org.mariadb.jdbc.Driver'");
 		}
 		
 		System.out.println("debug: method-end: DBListener.contextInitialized()");
