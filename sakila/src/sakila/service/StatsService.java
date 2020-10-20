@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 
 import sakila.dao.StatsDao;
 import sakila.vo.Stats;
+import sakila.util.DBUtil;
 
 public class StatsService {
 	StatsDao statsDao;
@@ -19,19 +20,11 @@ public class StatsService {
 		Connection conn = null;
 		Stats returnStats = null;
 		
-		final String DB_URL = "jdbc:mariadb://localhost:3306/sakila";
-		final String DB_USER = "root";
-		final String DB_PASSWORD = "java1004";
-		System.out.println("debug: instance-variable: DB_URL="+DB_URL);
-		System.out.println("debug: instance-variable: DB_USER="+DB_USER);
-		System.out.println("debug: instance-variable: DB_PASSWORD="+DB_PASSWORD);
-		
 		try {
-			System.out.println("debug: message: 'Connect DB...'");
-			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			// 트랜잭션이 처리될 경우를 대비해, 자동 커밋을 하지 않고, try문의 끝에서 수동으로 commit을 넣음
-			conn.setAutoCommit(false);
-			System.out.println("debug: message: 'Connect successfully: DB'");
+			// DBUtil을 사용해 DB에 연결함
+			// 연결 실패 시 Exception을 던짐
+			DBUtil dbUtil = new DBUtil();
+			conn = dbUtil.getConnection();
 			
 			// 현재 날짜를 이용해 statsDao에 전달할 파라미터 객체를 만든 뒤
 			Stats paramStats = new Stats();
@@ -83,19 +76,11 @@ public class StatsService {
 		// 리스너에서 Class.forName()을 이미 호출하여 JDBC를 로드했으므로 따로 적을 필요는 없음
 		Connection conn = null;
 		
-		final String DB_URL = "jdbc:mariadb://localhost:3306/sakila";
-		final String DB_USER = "root";
-		final String DB_PASSWORD = "java1004";
-		System.out.println("debug: instance-variable: DB_URL="+DB_URL);
-		System.out.println("debug: instance-variable: DB_USER="+DB_USER);
-		System.out.println("debug: instance-variable: DB_PASSWORD="+DB_PASSWORD);
-		
 		try {
-			System.out.println("debug: message: 'Connect DB...'");
-			conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-			// 트랜잭션이 처리될 경우를 대비해, 자동 커밋을 하지 않고, try문의 끝에서 수동으로 commit을 넣음
-			conn.setAutoCommit(false);
-			System.out.println("debug: message: 'Connect successfully: DB'");
+			// DBUtil을 사용해 DB에 연결함
+			// 연결 실패 시 Exception을 던짐
+			DBUtil dbUtil = new DBUtil();
+			conn = dbUtil.getConnection();
 			
 			// 현재 날짜를 이용해 statsDao에 전달할 파라미터 객체를 만든 뒤
 			Stats paramStats = new Stats();
