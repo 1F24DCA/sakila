@@ -186,6 +186,8 @@ public class StatsService {
 		Calendar today = Calendar.getInstance(); // 현재 날짜를 Calendar 객체로 가져와서 today 변수에 넣고
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // yyyy-MM-dd 포맷 형식을 만든 다음
 		String formattedDate = dateFormat.format(today.getTime()); // today 변수를 yyyy-MM-dd 포맷으로 변환해서 String에 집어넣음
+		// 초기 코드: ... = dateFormat.format(today); <- format 메서드는 Calendar 객체를 받지 않기에 Date 객체로 변환이 필요함
+		// 따라서 today 대신 today.getTime() 메서드로 Date 객체를 받아와 넘겨줌
 		
 		return formattedDate;
 	}
