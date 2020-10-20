@@ -42,7 +42,9 @@ public class LoginServlet extends HttpServlet {
 	// 로그인 액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("debug: method-begin: LoginServlet.doPost()");
-
+		
+		// TODO: 로그인 액션 구현
+		
 		System.out.println("debug: method-end: LoginServlet.doPost()");
 	}
 }
