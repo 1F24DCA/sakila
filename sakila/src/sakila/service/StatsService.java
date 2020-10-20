@@ -48,11 +48,7 @@ public class StatsService {
 				statsDao.updateStatsPlusOne(conn, todayStats);
 			} else {
 				// 오늘 날짜의 첫 방문자면 오늘 날짜로 테이블의 행을 만들고, 1을 집어넣음
-				todayStats = new Stats();
-				todayStats.setDay(paramStats.getDay());
-				todayStats.setCount(1);
-				
-				statsDao.insertStats(conn, todayStats);
+				statsDao.insertStatsCountOne(conn, paramStats);
 			}
 			
 			conn.commit();

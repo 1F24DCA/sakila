@@ -30,13 +30,12 @@ public class StatsDao {
 		return returnStats;
 	}
 	
-	public void insertStats(Connection conn, Stats paramStats) throws Exception {
+	public void insertStatsCountOne(Connection conn, Stats paramStats) throws Exception {
 		System.out.println("debug: method-begin: StatsDao.insertStats()");
 		System.out.println("debug: method-parameter: paramStats="+paramStats);
 		
-		PreparedStatement stmt = conn.prepareStatement(StatsQuery.INSERT_STATS);
+		PreparedStatement stmt = conn.prepareStatement(StatsQuery.INSERT_STATS_COUNT_ONE);
 		stmt.setString(1, paramStats.getDay());
-		stmt.setLong(2, paramStats.getCount());
 		
 		int updatedRow = stmt.executeUpdate();
 		System.out.println("debug: instance-variable: updatedRow="+updatedRow);
