@@ -22,7 +22,7 @@ public class StatsDao {
 		if (rs.next()) {
 			returnStats = new Stats();
 			returnStats.setDay(rs.getString("day"));
-			returnStats.setCount(rs.getLong("count"));
+			returnStats.setCnt(rs.getLong("cnt"));
 		}
 		System.out.println("debug: instance-variable: returnStats="+returnStats);
 		
@@ -42,7 +42,7 @@ public class StatsDao {
 		ResultSet rs = stmt.executeQuery();
 		if (rs.next()) {
 			returnStats = new Stats();
-			returnStats.setCount(rs.getLong("SUM(count)"));
+			returnStats.setCnt(rs.getLong("SUM(cnt)"));
 		}
 		System.out.println("debug: instance-variable: returnStats="+returnStats);
 		

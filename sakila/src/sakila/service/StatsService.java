@@ -11,15 +11,16 @@ import sakila.util.DBUtil;
 public class StatsService {
 	StatsDao statsDao;
 	
-	// 오늘의 방문자 수를 조회하는 메서드
-	// Stats 객체를 반환: stats.getDay() 메서드로 방문날짜, stats.getCount()로 오늘의 방문횟수 조회 가능
-	public Stats getTodayStats() {
+	// 방문자 수를 조회하는 메서드
+	// Map<String, Object> 객체를 반환: "todayStats" 키에 오늘 날짜와 오늘 방문자 수가 담긴 Stats 객체를, 
+	// "totalCount" 키에 전체 날짜에서의 총 방문자 수가 담긴 Long 객체(long 타입 래퍼클래스)를 반환
+	public Map<String, Object> getStats() {
 		System.out.println("debug: method-begin: StatsService.getTodayStats()");
 		statsDao = new StatsDao();
 		
 		// 리스너에서 Class.forName()을 이미 호출하여 JDBC를 로드했으므로 따로 적을 필요는 없음
 		Connection conn = null;
-		Stats returnStats = null;
+		Map<String, Object> returnMap = new HashMap<String, Object>();
 		
 		try {
 			// DBUtil을 사용해 DB에 연결함
@@ -27,22 +28,27 @@ public class StatsService {
 			DBUtil dbUtil = new DBUtil();
 			conn = dbUtil.getConnection();
 			
-			// 현재 날짜를 이용해 statsDao에 전달할 파라미터 객체를 만든 뒤
+			// 현재 날짜를 이용해 statsDao.selectStatsOne()에 전달할 파라미터 객체를 만듦
 			Stats paramStats = new Stats();
 			paramStats.setDay(this.getFormattedToday());
 			System.out.println("debug: instance-variable: paramStats="+paramStats);
-			// 현재 날짜에 대한 방문자 수 정보를 가져옴
-			Stats todayStats = statsDao.selectStatsOne(conn, paramStats);
-			System.out.println("debug: instance-variable: todayStats="+todayStats);
 			
 			// 일련의 트랜젝션 실행
 			System.out.println("debug: message: 'Execute SQL transection...'");
-			returnStats = statsDao.selectStatsOne(conn, todayStats);
-			System.out.println("debug: instance-variable: returnStats="+returnStats);
+			
+			Stats todayStats = statsDao.selectStatsOne(conn, paramStats);
+			Stats totalStats = statsDao.selectStatsTotal(conn);
 			
 			// 트랜잭션이 성공적으로 실행되었다면 커밋
 			conn.commit();
 			System.out.println("debug: message: 'Execute successfully: Connect DB and SQL transection'");
+			
+			System.out.println("debug: instance-variable: todayStats="+todayStats);
+			System.out.println("debug: instance-variable: totalStats="+totalStats);
+			
+			// 리턴값으로 내보낼 Map에 값을 집어넣음
+			returnMap.put("todayStats", todayStats);
+			returnMap.put("totalCount", totalStats.getCnt());
 		} catch (Exception e) { // DB 연결 혹은 쿼리 작업 중 예외 발생 시
 			e.printStackTrace();
 			System.out.println("debug: message: 'Execute failed: Connect DB and SQL transection'");
@@ -67,58 +73,7 @@ public class StatsService {
 		}
 		
 		System.out.println("debug: method-end: StatsService.getTodayStats()");
-		return returnStats;
-	}
-	
-	// 전체 기간 방문자 수를 조회하는 메서드
-	// Stats 객체를 반환: stats.getCount()로 전체 기간 방문횟수 조회 가능
-	public Stats getTotalStats() {
-		System.out.println("debug: method-begin: StatsService.getTotalStats()");
-		statsDao = new StatsDao();
-		
-		// 리스너에서 Class.forName()을 이미 호출하여 JDBC를 로드했으므로 따로 적을 필요는 없음
-		Connection conn = null;
-		Stats returnStats = null;
-		
-		try {
-			// DBUtil을 사용해 DB에 연결함
-			// 연결 실패 시 Exception을 던짐
-			DBUtil dbUtil = new DBUtil();
-			conn = dbUtil.getConnection();
-			
-			// 일련의 트랜젝션 실행
-			System.out.println("debug: message: 'Execute SQL transection...'");
-			returnStats = statsDao.selectStatsTotal(conn);
-			System.out.println("debug: instance-variable: returnStats="+returnStats);
-			
-			// 트랜잭션이 성공적으로 실행되었다면 커밋
-			conn.commit();
-			System.out.println("debug: message: 'Execute successfully: Connect DB and SQL transection'");
-		} catch (Exception e) { // DB 연결 혹은 쿼리 작업 중 예외 발생 시
-			e.printStackTrace();
-			System.out.println("debug: message: 'Execute failed: Connect DB and SQL transection'");
-			
-			try {
-				System.out.println("debug: message: 'Execute rollback...'");
-				conn.rollback();
-				System.out.println("debug: message: 'Execute successfully: rollback'");
-			} catch (Exception e2) { // 롤백 실패 시
-				e2.printStackTrace();
-				System.out.println("debug: message: 'Execute failed: rollback'");
-			}
-		} finally { // 어쩌나 저쩌나 작업이 중도 실패됐든 작업이 정상 종료 되었든간에 conn.close()로 자원 수동 반환
-			try {
-				System.out.println("debug: message: 'Close conn...'");
-				conn.close();
-				System.out.println("debug: message: 'Close successfully: conn'");
-			} catch (Exception e) { // conn.close() 실패 시
-				e.printStackTrace();
-				System.out.println("debug: message: 'Close failed: conn'");
-			}
-		}
-		
-		System.out.println("debug: method-end: StatsService.getTotalStats()");
-		return returnStats;
+		return returnMap;
 	}
 	
 	// 방문자 수를 1 더하는 메서드

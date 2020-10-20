@@ -4,7 +4,7 @@ package sakila.vo;
 // Stats 테이블의 데이터를 각 객체에 전달할 때 사용되는 Value object
 public class Stats {
 	private String day;
-	private long count;
+	private long cnt;
 	
 	public String getDay() {
 		return day;
@@ -12,15 +12,15 @@ public class Stats {
 	public void setDay(String day) {
 		this.day = day;
 	}
-	public long getCount() {
-		return count;
+	public long getCnt() {
+		return cnt;
 	}
-	public void setCount(long count) {
-		this.count = count;
+	public void setCnt(long count) {
+		this.cnt = count;
 	}
 	
 	@Override
 	public String toString() {
-		return "Stats [day=" + day + ", count=" + count + "]";
+		return "Stats [day=" + day + ", count=" + cnt + "]";
 	}
 }

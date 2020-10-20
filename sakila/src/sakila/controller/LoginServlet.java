@@ -1,6 +1,8 @@
 package sakila.controller;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,13 +33,12 @@ public class LoginServlet extends HttpServlet {
 		
 		// 오늘의 방문자 수와 총 방문자 수를 뷰로 보내기 위해 StatsService를 사용함
 		statsService = new StatsService();
-		Stats todayStats = statsService.getTodayStats();
-		Stats totalStats = statsService.getTotalStats();
+		Map<String, Object> map = statsService.getStats();
 		
-		request.setAttribute("todayStats", todayStats);
-		request.setAttribute("totalStats", totalStats);
+		request.setAttribute("todayStats", map.get("todayStats"));
+		request.setAttribute("totalCount", map.get("totalCount"));
 		System.out.println("debug: request-attribute: todayStats="+request.getAttribute("todayStats"));
-		System.out.println("debug: request-attribute: totalStats="+request.getAttribute("totalStats"));
+		System.out.println("debug: request-attribute: totalCount="+request.getAttribute("totalCount"));
 		
 		// 뷰로 포워딩
 		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);

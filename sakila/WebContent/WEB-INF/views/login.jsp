@@ -36,10 +36,10 @@
 				
 				<div class="text-center m-2">
 					<div class="text-secondary small">
-						오늘 방문자 수: ${todayStats.count}
+						오늘 방문자 수: ${todayStats.cnt}
 					</div>
 					<div class="text-secondary small">
-						총 방문자 수: ${totalStats.count}
+						총 방문자 수: ${totalCount}
 					</div>
 				</div>
 			</div>
