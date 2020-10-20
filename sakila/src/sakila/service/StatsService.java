@@ -11,7 +11,8 @@ import sakila.util.DBUtil;
 public class StatsService {
 	StatsDao statsDao;
 	
-	// 방문자 수를 조회하는 메서드
+	// 오늘의 방문자 수를 조회하는 메서드
+	// Stats 객체를 반환: stats.getDay() 메서드로 방문날짜, stats.getCount()로 방문횟수 조회 가능
 	public Stats getStats() {
 		System.out.println("debug: method-begin: StatsService.getStats()");
 		statsDao = new StatsDao();

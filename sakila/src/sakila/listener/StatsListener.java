@@ -8,6 +8,7 @@ import sakila.service.StatsService;
 
 @WebListener
 public class StatsListener implements HttpSessionListener {
+	// 세션 생성 시 DB를 통해 방문자 수를 1씩 증가시킴
 	public void sessionCreated(HttpSessionEvent event) {
 		System.out.println("debug: method-begin: StatsListener.sessionCreated()");
 		
