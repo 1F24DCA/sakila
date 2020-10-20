@@ -1,6 +1,5 @@
 package sakila.dao;
 
-import java.util.*;
 import java.sql.*;
 
 import sakila.query.StatsQuery;
