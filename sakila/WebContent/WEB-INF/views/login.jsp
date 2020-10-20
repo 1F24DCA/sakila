@@ -9,6 +9,7 @@
 	</head>
 	<body>
 		<h1>로그인 폼</h1>
+		<div>오늘 방문자 수: ${todayStats.count}</div>
 		
 		<form method="post" action="">
 			<div>
