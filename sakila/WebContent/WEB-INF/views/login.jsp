@@ -21,16 +21,15 @@
 					<i class='fas fa-user-circle text-secondary' style='font-size:125px'></i>
 				</div>
 				
-				<!-- TODO: action="" 부분에 링크 추가 -->
-				<form method="post" action="">
+				<form method="post" action="${pageContext.request.contextPath}/LoginServlet" id="loginForm">
 					<div class="m-2">
-						<input class="form-control" type="text" placeholder="ID">
+						<input class="form-control" type="text" name="staffId" placeholder="ID" id="loginId">
 					</div>
 					<div class="m-2">
-						<input class="form-control" type="password" placeholder="PW">
+						<input class="form-control" type="password" name="password" placeholder="PW" id="loginPw">
 					</div>
 					<div class="m-2">
-						<button class="btn btn-primary btn-block" type="button">Log-in</button>
+						<button class="btn btn-primary btn-block" type="submit" id="loginSubmit">Log-in</button>
 					</div>
 				</form>
 				

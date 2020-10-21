@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import sakila.service.StatsService;
-import sakila.vo.Stats;
+import sakila.service.*;
+import sakila.vo.*;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private StatsService statsService;
+	private StaffService staffService;
 	
 	// 로그인 폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,8 +50,28 @@ public class LoginServlet extends HttpServlet {
 	// 로그인 액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("debug: method-begin: LoginServlet.doPost()");
+		System.out.println("debug: request-parameter: staffId="+request.getParameter("staffId"));
+		System.out.println("debug: request-parameter: password="+request.getParameter("password"));
 		
-		// TODO: 로그인 액션 구현
+		Staff paramStaff = new Staff();
+		paramStaff.setStaffId(Integer.parseInt(request.getParameter("staffId")));
+		paramStaff.setPassword(request.getParameter("password"));
+		
+		staffService = new StaffService();
+		Staff returnStaff = staffService.checkLoginInfo(paramStaff);
+		if (returnStaff != null) {
+			System.out.println("debug: message: 'Login successfully'");
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("loginStaff", returnStaff);
+
+			response.sendRedirect(request.getContextPath()+"/auth/IndexServlet");
+		} else {
+			System.out.println("debug: message: 'Login failed'");
+			
+			// TODO: 로그인 실패했다는 alert 창, 혹은 뭐든 띄웠으면 함
+			response.sendRedirect(request.getContextPath()+"/LoginServlet");
+		}
 		
 		System.out.println("debug: method-end: LoginServlet.doPost()");
 	}
