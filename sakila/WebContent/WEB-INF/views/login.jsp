@@ -12,6 +12,22 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<!-- Font Awesome 5 아이콘 로드 -->
 		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+		
+		<script>
+			$(document).ready(function() {
+				$('#loginSubmit').click(function() {
+					if ($('#loginId').val() == "") {
+						alert("ID를 입력해주세요!");
+						return;
+					} else if ($('#loginPw').val() == "") {
+						alert("PW를 입력해주세요!");
+						return;
+					}
+					
+					$('#loginForm').submit();
+				});
+			});
+		</script>
 	</head>
 	
 	<body>
@@ -29,7 +45,7 @@
 						<input class="form-control" type="password" name="password" placeholder="PW" id="loginPw">
 					</div>
 					<div class="m-2">
-						<button class="btn btn-primary btn-block" type="submit" id="loginSubmit">Log-in</button>
+						<button class="btn btn-primary btn-block" type="button" id="loginSubmit">Log-in</button>
 					</div>
 				</form>
 				
