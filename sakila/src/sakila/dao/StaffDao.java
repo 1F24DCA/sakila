@@ -16,8 +16,15 @@ public class StaffDao {
 		ResultSet rs = stmt.executeQuery();
 		if (rs.next()) {
 			returnStaff = new Staff();
-			returnStaff.setStaffId(rs.getInt("staff.staff_id"));
-			returnStaff.setUsername(rs.getString("staff.username"));
+			returnStaff.setStaffId(rs.getInt("staff_id"));
+			returnStaff.setFirstName(rs.getString("first_name"));
+			returnStaff.setLastName(rs.getString("last_name"));
+			returnStaff.setAddressId(rs.getInt("address_id"));
+			returnStaff.setPicture(rs.getString("picture"));
+			returnStaff.setEmail(rs.getString("email"));
+			returnStaff.setStoreId(rs.getInt("store_id"));
+			returnStaff.setActive(rs.getInt("active"));
+			returnStaff.setUsername(rs.getString("Username"));
 		}
 		
 		return returnStaff;

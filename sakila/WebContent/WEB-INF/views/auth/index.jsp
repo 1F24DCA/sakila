@@ -4,15 +4,24 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>index</title>
+		
+		<!-- 부트스트랩 로드 -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<!-- jQuery 로드 -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Font Awesome 5 아이콘 로드 -->
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 	</head>
 	
 	<body>
-		<h1>인덱스 페이지</h1>
-		<div>
-			공사중
-		</div>
-		<div>
-			<a href="${pageContext.request.contextPath}/auth/LogoutServlet">로그아웃</a>
+		<div class="container-xl">
+			<h1>인덱스 페이지</h1>
+			<div>
+				<span>${loginStaff.username}</span> 관리자님
+			</div>
+			<div>
+				<a href="${pageContext.request.contextPath}/auth/LogoutServlet">로그아웃</a>
+			</div>
 		</div>
 	</body>
 </html>
