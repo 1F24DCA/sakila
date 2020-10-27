@@ -15,6 +15,11 @@
 	
 	<body>
 		<div class="container-xl">
+			<div class="d-flex">
+				<div style="width: 250px; background-color: #CCCCCC">asdf</div>
+				<div class="bg-primary flex-grow-1">asdf</div>
+			</div>
+			
 			<h1>인덱스 페이지</h1>
 			<div>
 				<span>${loginStaff.username}</span> 관리자님

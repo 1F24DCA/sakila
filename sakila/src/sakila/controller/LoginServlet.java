@@ -50,11 +50,11 @@ public class LoginServlet extends HttpServlet {
 	// 로그인 액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("debug: method-begin: LoginServlet.doPost()");
-		System.out.println("debug: request-parameter: staffId="+request.getParameter("staffId"));
+		System.out.println("debug: request-parameter: email="+request.getParameter("email"));
 		System.out.println("debug: request-parameter: password="+request.getParameter("password"));
 		
 		Staff paramStaff = new Staff();
-		paramStaff.setStaffId(Integer.parseInt(request.getParameter("staffId")));
+		paramStaff.setEmail(request.getParameter("email"));
 		paramStaff.setPassword(request.getParameter("password"));
 		
 		staffService = new StaffService();

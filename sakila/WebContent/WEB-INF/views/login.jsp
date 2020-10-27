@@ -39,10 +39,10 @@
 				
 				<form method="post" action="${pageContext.request.contextPath}/LoginServlet" id="loginForm">
 					<div class="m-2">
-						<input class="form-control" type="text" name="staffId" placeholder="ID" id="loginId">
+						<input class="form-control" type="text" name="email" placeholder="ID" id="loginId" value="Mike.Hillyer@sakilastaff.com">
 					</div>
 					<div class="m-2">
-						<input class="form-control" type="password" name="password" placeholder="PW" id="loginPw">
+						<input class="form-control" type="password" name="password" placeholder="PW" id="loginPw" value="1234">
 					</div>
 					<div class="m-2">
 						<button class="btn btn-primary btn-block" type="button" id="loginSubmit">Log-in</button>

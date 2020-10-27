@@ -10,7 +10,7 @@ public class StaffDao {
 		Staff returnStaff = null;
 		
 		PreparedStatement stmt = conn.prepareStatement(StaffQuery.SELECT_STAFF_BY_KEY);
-		stmt.setInt(1, paramStaff.getStaffId());
+		stmt.setString(1, paramStaff.getEmail());
 		stmt.setString(2, paramStaff.getPassword());
 		
 		ResultSet rs = stmt.executeQuery();
