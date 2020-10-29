@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import sakila.service.*;
 import sakila.vo.*;
 
-@WebServlet({"/LoginServlet", "/"})
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
