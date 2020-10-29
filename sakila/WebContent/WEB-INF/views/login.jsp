@@ -32,9 +32,9 @@
 	
 	<body>
 		<div class="d-flex justify-content-center w-100">
-			<div class="d-flex flex-column" style="width: 300px">
+			<div class="d-flex flex-column" style="width: 300px; margin-top: 7rem;">
 				<div class="text-center m-2">
-					<i class='fas fa-user-circle text-secondary' style='font-size:125px'></i>
+					<i class='fas fa-user-circle text-secondary' style='font-size:8.5rem'></i>
 				</div>
 				
 				<form method="post" action="${pageContext.request.contextPath}/LoginServlet" id="loginForm">
