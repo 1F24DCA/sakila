@@ -25,7 +25,7 @@ public class LoginFilter implements Filter {
 		if (request instanceof HttpServletRequest) {
 			HttpServletRequest httpRequest = (HttpServletRequest)request;
 			HttpServletResponse httpResponse = (HttpServletResponse)response;
-				
+			
 			// 로그인했는지 물어보고, 로그인이 안되어있다면 로그인 페이지로 이동
 			HttpSession session = httpRequest.getSession();
 			if (session.getAttribute("loginStaff") == null) {
