@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+.sakila-container
+{
+	display: flex;
+	max-width: 1185px;
+	margin: auto;
+}
+
+.sakila-nav
+{
+	background-color: #DDDDDD;
+	
+	display: block;
+	position: sticky;
+	top: 0;
+	min-width: 245px;
+	height: 100vh;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+.sakila-nav-header
+{
+	font-size: 2rem;
+	font-weight: bolder;
+	text-align: center;
+	
+	display: block;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+.sakila-nav-info
+{
+	text-align: right;
+	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.25rem;
+}
+.sakila-nav-menu
+{
+	display: block;
+	padding: 0.5rem;
+	margin-top: 5rem;
+}
+.sakila-nav-menu-header
+{
+	font-size: 1.5rem;
+	font-weight: bolder;
+	
+	display: block;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+.sakila-nav-menu > hr
+{
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.sakila-nav-menu-item
+{
+	color: #000000;
+	display: block;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+
+.sakila-content
+{
+	width: 100%;
+	padding: 3rem;
+}
+.sakila-content-header
+{
+	font-size: 2.25rem;
+	font-weight: bold;
+	border-bottom: 2px solid #BBBBBB;
+	
+	display:block;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	margin-bottom: 2.5rem;
+}
